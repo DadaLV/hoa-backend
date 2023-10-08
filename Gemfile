@@ -47,6 +47,7 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'rspec-rails', '~> 6.0.0'
   gem 'factory_bot_rails'
+  gem 'letter_opener_web', '~> 2.0'
 end
 
 group :development do

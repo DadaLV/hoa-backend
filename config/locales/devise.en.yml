@@ -27,6 +27,18 @@ en:
         subject: "Email Changed"
       password_change:
         subject: "Password Changed"
+      confirmation_instructions:
+        confirm_link_msg: "You can confirm your account email through the link below:"
+        confirm_account_link: "Confirm my account"
+      reset_password_instructions:
+        request_reset_link_msg: "You have requested a password reset on your account at"
+        request_reset_follow_link: "Please, follow the link:"
+        password_change_link: "Click here"
+        ignore_mail_msg: "If you didn't make the request, just ignore this message."
+        expire_in: "This link will expire in 30 minutes and can only be used once."
+        no_changes_msg: "Your password won't change until you access the link above and create a new one."
+        thanks: "Thanks,"
+        signature: "The HOA Team"
     omniauth_callbacks:
       failure: "Could not authenticate you from %{kind} because \"%{reason}\"."
       success: "Successfully authenticated from %{kind} account."
@@ -36,6 +48,7 @@ en:
       send_paranoid_instructions: "If your email address exists in our database, you will receive a password recovery link at your email address in a few minutes."
       updated: "Your password has been changed successfully. You are now signed in."
       updated_not_active: "Your password has been changed successfully."
+      same_as_current: "can't be the same as your current password"
     registrations:
       destroyed: "Bye! Your account has been successfully cancelled. We hope to see you again soon."
       signed_up: "Welcome! You have signed up successfully."

@@ -30,4 +30,5 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  hello: "Dear,"
+  request_reset_link_msg: "Click the link below to finish your login"
