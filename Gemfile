@@ -53,3 +53,5 @@ group :development do
   # gem "spring"
 end
 
+gem 'devise'
+gem 'devise_token_auth'
