@@ -1,0 +1,18 @@
+<div style="font-size: 16px; font-family: Arial; margin: 5px; line-height: 1.4;">
+  <span><%= t("devise.mailer.invitation_instructions.hello", email: @resource.email) %>!</span>
+  <br>
+  <br>
+  <span><%= t("devise.mailer.invitation_instructions.someone_invited_you") %> <%= link_to('hoa.com', 'https://hoa.com', target: "_blank")%></span>
+  <br>
+  <span><%= link_to t("devise.mailer.invitation_instructions.accept"), accept_invitation_url(@resource, invitation_token: @token) %></span>
+  <br>
+  <br>
+  <span><%= t("devise.mailer.invitation_instructions.expires_in") %></span>
+  <br>
+  <span><%= t("devise.mailer.invitation_instructions.ignore") %></span>
+  <br>
+  <br>
+  <span><%= t ("devise.mailer.invitation_instructions.thanks") %></span>
+  <br>    
+  <span><%= t ("devise.mailer.invitation_instructions.signature") %></span>
+</div>

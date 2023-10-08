@@ -1,0 +1,41 @@
+en:
+  devise:
+    api:
+      invitations:
+        invitation_sent: "Invitation sent"
+        link_valid: "Invitation link is valid."
+        link_not_valid: "Invalid invitation link."
+        user_updated: "Your password has been successfully created!"
+        authorized_users_only: "Authorized users only."
+        invalid_token: "Invalid token."
+    failure:
+      invited: "You have a pending invitation, accept it to finish creating your account."
+    invitations:
+      send_instructions: "An invitation email has been sent to %{email}."
+      invitation_token_invalid: "The invitation token provided is not valid!"
+      updated: "Your password was set successfully. You are now signed in."
+      updated_not_active: "Your password was set successfully."
+      no_invitations_remaining: "No invitations remaining"
+      invitation_removed: "Your invitation was removed."
+      new:
+        header: "Send invitation"
+        submit_button: "Send an invitation"
+      edit:
+        header: "Set your password"
+        submit_button: "Set my password"
+    mailer:
+      invitation_instructions:
+        subject: "Welcome to HOA platform"
+        hello: "Hello %{email}"
+        someone_invited_you: "Click the link below to finish your login to"
+        accept: "Click here"
+        expires_in: "This link will expire in 24 hours and can only be used once."
+        ignore: "If the message was sent to you by mistake, just ignore this message."
+        thanks: "Thanks,"
+        signature: "The HOA Team"
+  time:
+    formats:
+      devise:
+        mailer:
+          invitation_instructions:
+            accept_until_format: "%B %d, %Y %I:%M %p"

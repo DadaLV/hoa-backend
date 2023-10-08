@@ -160,3 +160,121 @@ paths:
           description: Redirects to the provided `redirect_url` with additional authentication parameters.
         "406":
           description: Invalid token.
+  /api/v1/auth/invitation:
+    post:
+      tags:
+        - Invitation
+      summary: Creates an invitation for a user
+      description: Use this endpoint to send an invitation to a user's email.
+      operationId: createInvitation
+      parameters:
+        - name: uid
+          in: header
+          required: true
+          schema:
+            type: string
+            example: test4@test.com
+        - name: client
+          in: header
+          required: true
+          schema:
+            type: string
+            example: 6xXSSR5Rh1inF305K-V_kg
+        - name: access-token
+          in: header
+          required: true
+          schema:
+            type: string
+            example: pFppqIdXa58uHkAZ0kXRqw
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: object
+                  properties:
+                    email:
+                      type: string
+                      format: email
+                      example: test8@test.com
+                    first_name:
+                      type: string
+                      example: Black
+                    middle_name:
+                      type: string
+                      example: Holy
+                    last_name:
+                      type: string
+                      example: Jack
+                    phone_number:
+                      type: string
+                      format: phone
+                      example: +380679876543
+                    role:
+                      type: string
+                      example: admin
+                    address:
+                      type: string
+                      example: Lviv, Horodotska str, 1/15
+              required:
+                - email
+      responses:
+        "201":
+          description: Invitation sent successfully
+        "401":
+          description: Unauthorized
+        "422":
+          description: Unprocessable entity (invalid input)
+    patch:
+      tags:
+        - Invitation
+      summary: Updates user with invitation token
+      description: Use this endpoint to update a user using an invitation token.
+      operationId: updateInvitationUser
+      parameters:
+        - name: invitation_token
+          in: query
+          required: true
+          schema:
+            type: string
+            example: pFppqIdXa58uHkAZ0kXRqw
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                password:
+                  type: string
+                  example: Password2!
+                password_confirmation:
+                  type: string
+                  example: Password2!
+      responses:
+        "202":
+          description: Your password has been successfully created!
+        "406":
+          description: Invalid token.
+  /api/v1/auth/invitation/accept:
+    get:
+      tags:
+        - Invitation
+      summary: Accepts an invitation using a token
+      description: Use this endpoint to accept an invitation using a token.
+      operationId: acceptInvitation
+      parameters:
+        - name: invitation_token
+          in: query
+          required: true
+          schema:
+            type: string
+            example: pFppqIdXa58uHkAZ0kXRqw
+      responses:
+        "200":
+          description: Invitation link is valid.
+        "406":
+          description: Invalid token.
