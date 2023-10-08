@@ -14,7 +14,7 @@ RSpec.describe 'SessionsController', type: :request do
     end
 
     it 'returns unauthorized for incorrect password' do
-      post '/api/v1/auth/sign_in', params: { email: 'test4@test.com', password: 'wrong_password' }
+      post '/api/v1/auth/sign_in', params: { email: 'test4@test.com', password: 'Password4!!!' }
       expect(response).to have_http_status(401)
     end
 

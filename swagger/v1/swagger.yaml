@@ -65,3 +65,98 @@ paths:
           description: Successful sign out
         '401':
           description: Unauthorized
+  /api/v1/auth/password:
+    post:
+      tags:
+        - Password recovery
+      summary: Requests password reset for a user
+      description: Use this endpoint to request a password reset for a user. An email with a password reset link will be sent to the user's email address.
+      operationId: requestPasswordReset
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                  example: test4@test.com
+                redirect_url:
+                  type: string
+                  format: uri
+                  example: "http://127.0.0.1:3000"
+      responses:
+        "200":
+          description: Email sent.Please check your email to reset your password.
+        "404":
+          description: There is no account with that name
+    put:
+      tags:
+        - Password recovery
+      summary: Create new password with recovery token
+      description: Use this endpoint to update a user using an recovery token.
+      operationId: updateUserPassword
+      parameters:
+        - name: uid
+          in: header
+          required: true
+          schema:
+            type: string
+            example: test4@test.com
+        - name: client
+          in: header
+          required: true
+          schema:
+            type: string
+            example: 6xXSSR5Rh1inF305K-V_kg
+        - name: access-token
+          in: header
+          required: true
+          schema:
+            type: string
+            example: pFppqIdXa58uHkAZ0kXRqw
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                password:
+                  type: string
+                  example: Password1!
+                password_confirmation:
+                  type: string
+                  example: Password1!
+      responses:
+        "202":
+          description: Your password has been successfully created!
+        "406":
+          description: Invalid token.
+  /api/v1/auth/password/edit:
+    get:
+      tags:
+        - Password recovery
+      summary: Check recovery token
+      description: Use this endpoint to check recovery token.
+      operationId: checkRecoveryToken
+      parameters:
+        - name: reset_password_token
+          in: query
+          required: true
+          schema:
+            type: string
+            example: pFppqIdXa58uHkAZ0kXRqw
+        - name: redirect_url
+          in: query
+          required: true
+          schema:
+            type: string
+            example: http://127.0.0.1:3000/login/create-new-passwor
+      responses:
+        "302":
+          description: Redirects to the provided `redirect_url` with additional authentication parameters.
+        "406":
+          description: Invalid token.

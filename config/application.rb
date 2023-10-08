@@ -26,5 +26,6 @@ module HoaBackend
     config.session_store :cookie_store, key: '_interslice_session'
     config.middleware.use ActionDispatch::Cookies
     config.middleware.use config.session_store, config.session_options
+    config.frontend_root_url = ENV['ROOT_FRONTEND_URL']
   end
 end
