@@ -17,5 +17,30 @@ RSpec.describe 'SessionsController', type: :request do
       post '/api/v1/auth/sign_in', params: { email: 'test4@test.com', password: 'wrong_password' }
       expect(response).to have_http_status(401)
     end
+
+    it 'returns a valid authentication token when "Remember Me" option is checked' do
+      post '/api/v1/auth/sign_in', params: { email: user.email, password: user.password, remember_me: '1' }      
+      expect(response).to have_http_status(200)
+      expect(response.headers['access-token']).not_to be_nil
+
+      auth_tokens = {
+        'access-token': response.headers['access-token'],
+        'client': response.headers['client'],
+        'uid': response.headers['uid']
+      }
+
+      get '/api/v1/auth/validate_token', headers: auth_tokens  
+      expect(response).to have_http_status(200)  
+    end
+
+    it 'returns a 401 unauthorized status when "Remember Me" option is not checked' do
+      post '/api/v1/auth/sign_in', params: { email: user.email, password: user.password, remember_me: false }      
+      expect(response).to have_http_status(200)
+      expect(response.headers['access-token']).not_to be_nil
+
+      get '/api/v1/auth/validate_token', params: { email: user.email, password: user.password }  
+      expect(response).to have_http_status(401)  
+    end
+    
   end
 end

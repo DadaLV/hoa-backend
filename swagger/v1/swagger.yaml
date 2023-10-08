@@ -24,6 +24,11 @@ paths:
           schema:
             type: string
             example: Password1!
+        - name: remember_me
+          in: query
+          schema:
+            type: string
+            example: true
       responses:
         "200":
           description: successful
