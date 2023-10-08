@@ -7,4 +7,10 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   include DeviseTokenAuth::Concerns::User
+
+  validates :password, format: {
+    with: /\A(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@$!%*?&]).{8,128}+\z/,
+              message: I18n.t('errors.messages.password_validation'),
+              allow_nil: true
+  }
 end
